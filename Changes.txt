@@ -1,3 +1,6 @@
+0.03    2012-07-28
+        Renamed the env key 'cerberus' to 'plack.cerberus'
+
 0.02    2012-07-28
         POD changes
 

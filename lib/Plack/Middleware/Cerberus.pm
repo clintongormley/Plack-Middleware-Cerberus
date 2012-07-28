@@ -66,13 +66,19 @@ sub _throttle {
 
 =head1 SYNOPSIS
 
-    use Dancer::Plugin::Cerberus;
+    use Plack::Builder;
 
     my $app = sub {
         my $env = shift;
         my $time_zone = $env->{cerberus}{tz}{name};
         ...
     };
+
+    builder {
+        enable 'Cerberus', servers => 'http://localhost:5001/';
+        $app;
+    };
+
 
 =head1 DESCRIPTION
 
@@ -113,20 +119,20 @@ L<App::Cerberus::Plugin::Throttle>.
 The basic configuration (C<servers> and C<timeout>) are passed to
 L<App::Cerberus::Client/new()>.
 
-    enable 'Plack::Middleware::Cerberus',
+    enable 'Cerberus',
         servers  => 'http://localhost:5001/',
         timeout  => 0.1;
 
 Or
 
-    enable 'Plack::Middleware::Cerberus',
+    enable 'Cerberus',
         servers  => [ 'http://host1:5001/', 'http://host2:5001/']
         timeout  => 0.1;
 
 If you are using the L<App::Cerberus::Plugin::Throttle> plugin, then you can
 also configure:
 
-    enable 'Plack::Middleware::Cerberus',
+    enable 'Cerberus',
         servers => 'http://localhost:5001/',
         enforce => 1,
         log_as  => 'warn';
